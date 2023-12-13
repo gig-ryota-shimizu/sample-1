@@ -1,0 +1,8 @@
+{
+  "files.associations": {
+    "*.html": "ejs"
+  },
+  "emmet.includeLanguages": {
+    "ejs": "html"
+  }
+}

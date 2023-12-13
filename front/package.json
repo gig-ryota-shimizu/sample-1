@@ -1,0 +1,25 @@
+{
+  "name": "front",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev2": "npm run build-watch & npm run serve",
+    "build": "tsc && vite build",
+    "build-watch": "tsc && vite build -w",
+    "serve": "serve ./dist"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "vite": "^5.0.0"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.4.16",
+    "destyle.css": "^4.0.0",
+    "glob": "^10.3.10",
+    "sass": "^1.69.5",
+    "serve": "^14.2.1",
+    "vite-plugin-ejs": "^1.7.0"
+  }
+}

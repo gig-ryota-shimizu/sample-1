@@ -1,0 +1,11 @@
+version: "2"
+services:
+  nodejs:
+    container_name: project-nodejs
+    build: docker/nodejs
+    volumes:
+      - ./front:/front
+    environment:
+      - NODE_ENV=development
+    ports:
+      - "3000:3000"
