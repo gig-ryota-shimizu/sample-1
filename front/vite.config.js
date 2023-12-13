@@ -1,15 +1,14 @@
 import { defineConfig } from 'vite'
-import { ViteEjsPlugin } from "vite-plugin-ejs";
+import { ViteEjsPlugin } from 'vite-plugin-ejs'
 import path from 'path'
 import { globSync } from 'glob'
 import autoprefixer from 'autoprefixer'
 
-console.log('vite.config.js');
+console.log('vite.config.js')
 
 const tsArray = globSync('src/pages/**/*.ts')
 
 const htmlArray = globSync('src/pages/**/*.html')
-
 
 const createEntries = (filePathArray) => {
   const entries = {}
@@ -20,12 +19,6 @@ const createEntries = (filePathArray) => {
   })
   return entries
 }
-console.log({
-  input: {
-    ...createEntries(tsArray),
-    ...createEntries(htmlArray)
-  }
-});
 
 export default defineConfig({
   root: './src/pages',
@@ -42,13 +35,13 @@ export default defineConfig({
         chunkFileNames: 'assets/js/dev/[name].js',
         assetFileNames: (assetInfo) => {
           if (/\.( gif|jpeg|jpg|png|svg|webp| )$/.test(assetInfo.name)) {
-            return 'assets/img/[name].[ext]';//画像アセットの出力設定
+            return 'assets/img/[name].[ext]'
           }
           if (/\.css$/.test(assetInfo.name)) {
-            return 'assets/css/[name].[ext]';
+            return 'assets/css/[name].[ext]'
           }
-          return 'assets/[name].[ext]';
-        },
+          return 'assets/[name].[ext]'
+        }
       }
     },
     css: {
@@ -65,7 +58,5 @@ export default defineConfig({
       usePolling: true
     }
   },
-  plugins: [
-    ViteEjsPlugin()
-  ]
+  plugins: [ViteEjsPlugin()]
 })

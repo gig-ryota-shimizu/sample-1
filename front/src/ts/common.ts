@@ -1,5 +1,3 @@
-
-
 export const commonInit = () => {
-  console.log('common.ts');
+  console.log('common.ts')
 }
