@@ -22,6 +22,8 @@ const createEntries = (filePathArray) => {
 
 export default defineConfig({
   root: './src/pages',
+  base: './',
+  publicDir: '../public',
   build: {
     outDir: '../../dist',
     emptyOutDir: true,
@@ -34,9 +36,6 @@ export default defineConfig({
         entryFileNames: 'assets/js/[name].js',
         chunkFileNames: 'assets/js/dev/[name].js',
         assetFileNames: (assetInfo) => {
-          if (/\.( gif|jpeg|jpg|png|svg|webp| )$/.test(assetInfo.name)) {
-            return 'assets/img/[name].[ext]'
-          }
           if (/\.css$/.test(assetInfo.name)) {
             return 'assets/css/[name].[ext]'
           }
