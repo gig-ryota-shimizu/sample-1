@@ -87,6 +87,15 @@ src 配下の html ファイルは ejs 記法が使えます。
 
   stylelint によるエラーを表示&フォーマットをしてくれます
 
+- leonzalion.vscode-ejs
+
+  ejs のシンタックスハイライトをしてくれます
+
+- j69.ejs-beautify
+
+  ejs のフォーマットをしてくれます
+
+
 ## ESlint
 
 基本的に JavaScript Standard Style というルールに則っています

@@ -46,64 +46,78 @@ const tableDataArray = [
 
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ディレクトリマップ</title>
-<link rel="icon" type="image/svg+xml" href="/vite.svg" />
-<style>
-.map {
-  margin-left: 60px;
-  margin-right: 60px;
-  margin-bottom: 80px;
-  font-size: 13px;
-}
-.map table {
-  border-collapse: collapse;
-  width: 100%;
-}
-.map table th {
-  font-weight: normal;
-  border: #cacaca solid 1px;
-  text-align: left;
-  padding: 10px 10px;
-}
-.map table thead th {
-  font-weight: bold;
-  text-align: center;
-  background-color: rgb(15, 76, 181);
-  color: #fff;
-}
-.map table .no-dir {
-  background-color: #ededed;
-}
-.map .center {
-  text-align: center;
-}
-.map .green {
-  text-align: center;
-  background-color: greenyellow;
-}
-.map .map_title {
-  width: 300px;
-}
-.map .map_id {
-  width: 60px;
-}
-.map .map_url {
-  width: 240px;
-}
-.map .map_status {
-  width: 100px;
-}
-.map .map_order {
-  width: 50px;
-}
-.map .map_note {
-  width: 300px;
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ディレクトリマップ</title>
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <style>
+    .map {
+      margin-left: 60px;
+      margin-right: 60px;
+      margin-bottom: 80px;
+      font-size: 13px;
+    }
+
+    .map table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    .map table th {
+      font-weight: normal;
+      border: #cacaca solid 1px;
+      text-align: left;
+      padding: 10px 10px;
+    }
+
+    .map table thead th {
+      font-weight: bold;
+      text-align: center;
+      background-color: rgb(15, 76, 181);
+      color: #fff;
+    }
+
+    .map table .no-dir {
+      background-color: #ededed;
+    }
+
+    .map .center {
+      text-align: center;
+    }
+
+    .map .green {
+      text-align: center;
+      background-color: greenyellow;
+    }
+
+    .map .map_title {
+      width: 300px;
+    }
+
+    .map .map_id {
+      width: 60px;
+    }
+
+    .map .map_url {
+      width: 240px;
+    }
+
+    .map .map_status {
+      width: 100px;
+    }
+
+    .map .map_order {
+      width: 50px;
+    }
+
+    .map .map_note {
+      width: 300px;
+    }
+  </style>
 </head>
+
 <body>
   <div class="map">
     <h1><%= clientName %>様 - ディレクトリマップ</h1>
@@ -121,26 +135,27 @@ const tableDataArray = [
       </thead>
       <tbody>
         <% tableDataArray.forEach((tableData, index) => { %>
-          <tr>
-            <th class="center"><%= index + 1 %></th>
-            <th><%= tableData.title %></th>
-            <th><a href="<%= tableData.url %>" target="_blank"><%= tableData.url %></a></th>
-            <th class="center"><%= tableData.pc %></th>
-            <th class="center"><%= tableData.sp %></th>
-            <th>
-              <% if(tableData.wpStartInclude) { %>
-              <span style="font-size:16px;color:green;font-weight:bold;">OK!</span>
-              <% } %>
-            </th>
-            <th><%= tableData.note %></th>
-          </tr>
+        <tr>
+          <th class="center"><%= index + 1 %></th>
+          <th><%= tableData.title %></th>
+          <th><a href="<%= tableData.url %>" target="_blank"><%= tableData.url %></a></th>
+          <th class="center"><%= tableData.pc %></th>
+          <th class="center"><%= tableData.sp %></th>
+          <th>
+            <% if(tableData.wpStartInclude) { %>
+            <span style="font-size:16px;color:green;font-weight:bold;">OK!</span>
+            <% } %>
+          </th>
+          <th><%= tableData.note %></th>
+        </tr>
         <% }) %>
       </tbody>
     </table>
 
     <% infoUrlList.forEach((infoUrl) => { %>
-      <h2>・<a href="<%= infoUrl.url %>" target="_blank"><%= infoUrl.title %></a></h2>
+    <h2>・<a href="<%= infoUrl.url %>" target="_blank"><%= infoUrl.title %></a></h2>
     <% }) %>
   </div>
 </body>
+
 </html>
