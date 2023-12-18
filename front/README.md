@@ -23,6 +23,8 @@ npm ci
 
 ```bash
 # localhost:3000 で立ち上がる
+# localhost:3000/map でディレクトリマップが見れます
+
 npm run dev
 ```
 
@@ -43,6 +45,13 @@ npm run build
 
 
 # はじめに知っておくべき内容
+
+## ディレクトリマップについて
+
+案件開始時に front/src/pages/map.html　をメンテナンスしてください。
+
+localhost:3000/map で確認できます。
+
 
 ## html ファイルについて
 
