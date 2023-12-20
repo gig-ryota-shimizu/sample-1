@@ -25,7 +25,7 @@ export default defineConfig(({ command, mode }) => {
 
   return {
     root: path.resolve(__dirname, 'src/pages'),
-    base: path.resolve(__dirname, ''),
+    base: './',
     publicDir: path.resolve(__dirname, 'src/public'),
     envDir: path.resolve(__dirname, ''),
     build: {
