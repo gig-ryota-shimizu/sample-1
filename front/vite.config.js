@@ -3,6 +3,7 @@ import { ViteEjsPlugin } from 'vite-plugin-ejs'
 import path from 'path'
 import { globSync } from 'glob'
 import autoprefixer from 'autoprefixer'
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 console.log('vite.config.js')
 
@@ -57,5 +58,15 @@ export default defineConfig({
       usePolling: true
     }
   },
-  plugins: [ViteEjsPlugin()]
+  plugins: [
+    ViteEjsPlugin(),
+    viteStaticCopy({
+      targets: [
+        {
+          src: path.resolve(__dirname, 'dist/assets'),
+          dest: path.resolve(__dirname, 'copy-assets')
+        }
+      ]
+    })
+]
 })
