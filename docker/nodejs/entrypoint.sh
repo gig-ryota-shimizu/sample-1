@@ -2,4 +2,6 @@
 
 npm ci
 
-sh -c "(while :; do date; sleep 1; done) >&2"
+npm run watch
+
+# sh -c "(while :; do date; sleep 1; done) >&2"
