@@ -42,5 +42,6 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.stylelint": "explicit"
   },
-  "markuplint.enable": false
+  "markuplint.enable": false,
+  "prettier.configPath": "./front/.prettierrc.json",
 }
