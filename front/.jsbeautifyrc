@@ -1,0 +1,9 @@
+{
+  "html": {
+    "indent_size": 2,
+    "unformatted": [
+      "pre"
+    ],
+    "indent_empty_lines": false
+  }
+}

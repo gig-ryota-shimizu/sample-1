@@ -1,18 +1,18 @@
-{
-  "extends": [
+module.exports = {
+  extends: [
     "stylelint-config-standard-scss",
-    "stylelint-config-recess-order"
+    "stylelint-config-recess-order",
   ],
-  "ignoreFiles": ["./public/**/*"],
-  "rules": {
+  ignoreFiles: ["./public/**/*"],
+  rules: {
     "selector-class-pattern": "^[a-z][a-zA-Z0-9-_]+$",
     "keyframes-name-pattern": "^[a-z][a-zA-Z0-9-]+$",
     "no-descending-specificity": null,
     "value-no-vendor-prefix": [
       true,
       {
-        "ignoreValues": ["box"]
-      }
-    ]
-  }
-}
+        ignoreValues: ["box"],
+      },
+    ],
+  },
+};
