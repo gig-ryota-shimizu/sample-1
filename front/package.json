@@ -27,6 +27,7 @@
     "uglify-js": "^3.19.3"
   },
   "devDependencies": {
+    "@astrojs/vercel": "^7.8.2",
     "@types/stats.js": "^0.17.4",
     "@types/three": "^0.181.0",
     "astro-relative-links": "^0.3.9",
