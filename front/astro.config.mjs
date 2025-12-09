@@ -1,6 +1,8 @@
 import { defineConfig } from "astro/config";
 import relativeLinks from "astro-relative-links";
 import autoprefixer from "autoprefixer";
+import glsl from 'vite-plugin-glsl';
+import vitePluginString from 'vite-plugin-string';
 
 // https://astro.build/config
 export default defineConfig({
@@ -14,6 +16,21 @@ export default defineConfig({
   compressHTML: false,
   integrations: [relativeLinks()],
   vite: {
+    plugins: [
+      glsl({
+        include: [
+          '**/*.glsl', '**/*.wgsl',
+          '**/*.vert', '**/*.frag',
+          '**/*.vs', '**/*.fs'
+        ],
+        exclude: undefined,
+        warnDuplicatedImports: true,
+        defaultExtension: 'glsl',
+        compress: false,
+        watch: true,
+        root: '/'
+      })
+    ],
     build: {
       // minify: false,
       assetsInlineLimit: 1024,

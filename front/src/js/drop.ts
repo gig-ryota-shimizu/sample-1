@@ -46,7 +46,8 @@ export function init() {
   
   dropSize = 1;
 
-  container = document.querySelector(".backboard");
+  container = document.querySelector(".drop");
+  if(!container) return;
 
   camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 3000 );
   camera.position.set( 0, 200, 0 );
