@@ -15,8 +15,7 @@ import { heightmapFragmentShader } from './heightmapFragmentShader';
 const WIDTH = 128;
 
 // Water size in system units
-const BOUNDS = 512;
-const BOUNDS_HALF = BOUNDS * 0.5;
+const BOUNDS = 1024;
 
 let container, stats;
 let camera, scene, renderer, controls;
@@ -57,16 +56,22 @@ export function init() {
   scene.background = new THREE.Color( 0xffffff ); // 白
 
   const sun = new THREE.DirectionalLight( 0xFFFFFF, 50.0 );
-  sun.position.set( 0, 300, 0 );
-  sun.target.position.set(0,0,0);
+  sun.position.set( 0, 200, 0 );
+  sun.target.position.set(100,100,0);
   scene.add( sun );
 
-  const sun2 = new THREE.DirectionalLight( 0x40A040, 8.0 );
-  sun2.position.set( - 100, 350, - 200 );
-  scene.add( sun2 );
+  const hemisphereLight = new THREE.HemisphereLight(0xffffbb, 0x080820, 1);
+  hemisphereLight.position.set( 0, 200, 0 );
+  // hemisphereLight.target.position.set(100,100,0);
+  // scene.add(hemisphereLight);
+
+  const spotLight = new THREE.SpotLight(0xffffff, 1);
+  spotLight.position.set(0, 10, 0);
+  spotLight.angle = Math.PI / 6;
+  scene.add(spotLight);
 
   const ambientLight = new THREE.AmbientLight( 0xFFFFFF, 0.9 );
-  // scene.add( ambientLight );
+  scene.add( ambientLight );
 
   renderer = new THREE.WebGLRenderer();
   renderer.setPixelRatio( window.devicePixelRatio );
@@ -209,6 +214,21 @@ function onWindowResize() {
   camera.updateProjectionMatrix();
 
   renderer.setSize( window.innerWidth, window.innerHeight );
+
+  // 水面のサイズもウィンドウに合わせて調整
+  const aspect = window.innerWidth / window.innerHeight;
+  
+  // // 水面のスケールを更新
+  // if (waterMesh) {
+  //   waterMesh.scale.set(aspect > 1 ? aspect : 1, 1, aspect < 1 ? 1/aspect : 1);
+  //   waterMesh.updateMatrix();
+  // }
+  
+  // if (meshRay) {
+  //   meshRay.scale.set(aspect > 1 ? aspect : 1, 1, aspect < 1 ? 1/aspect : 1);
+  //   meshRay.updateMatrix();
+  // }
+
 }
 
 function setMouseCoords( x, y ) {
