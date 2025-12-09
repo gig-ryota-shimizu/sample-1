@@ -2,11 +2,12 @@ import { defineConfig } from "astro/config";
 import relativeLinks from "astro-relative-links";
 import autoprefixer from "autoprefixer";
 import glsl from 'vite-plugin-glsl';
+import vercel from '@astrojs/vercel/static';
 
 // https://astro.build/config
 export default defineConfig({
   outDir: "./dist",
-  output: 'server',
+  output: 'static',
   adapter: vercel(),
   build: {
     format: "file",
