@@ -40,6 +40,8 @@ let dropSize;
 const dropCoords = new THREE.Vector2();
 let dropped = false;
 
+const gui = new GUI();
+
 export function init() {
   console.log('drop init!!!');
   
@@ -52,15 +54,19 @@ export function init() {
   camera.lookAt( 0, 0, 0 );
 
   scene = new THREE.Scene();
+  scene.background = new THREE.Color( 0xffffff ); // 白
 
-  const sun = new THREE.DirectionalLight( 0xFFFFFF, 20.0 );
-  sun.position.set( 200, 300, 175 );
+  const sun = new THREE.DirectionalLight( 0xFFFFFF, 50.0 );
+  sun.position.set( 0, 300, 0 );
   sun.target.position.set(0,0,0);
   scene.add( sun );
 
-  const sun2 = new THREE.DirectionalLight( 0x40A040, 4.0 );
+  const sun2 = new THREE.DirectionalLight( 0x40A040, 8.0 );
   sun2.position.set( - 100, 350, - 200 );
   scene.add( sun2 );
+
+  const ambientLight = new THREE.AmbientLight( 0xFFFFFF, 0.9 );
+  // scene.add( ambientLight );
 
   renderer = new THREE.WebGLRenderer();
   renderer.setPixelRatio( window.devicePixelRatio );
@@ -85,10 +91,9 @@ export function init() {
   });
 
   window.addEventListener( 'resize', onWindowResize );
-  const gui = new GUI();
   const effectController = {
-    dropSize: 10.0,
-    viscosity: 0.92,
+    dropSize: 30.0,
+    viscosity: 0.96,
   };
 
   const valuesChanger = function () {
@@ -99,20 +104,25 @@ export function init() {
   gui.add( effectController, 'dropSize', 1.0, 100.0, 1.0 ).onChange( valuesChanger );
   gui.add( effectController, 'viscosity', 0.9, 0.999, 0.001 ).onChange( valuesChanger );
 
-  loadTexture()
-  .then(envTexture => {
-    initWater(envTexture);
-    
-    valuesChanger();  
-    renderer.setAnimationLoop( animate );
-  });
+
+  initWater();    
+  valuesChanger();  
+  renderer.setAnimationLoop( animate );
+
+  // loadTexture()
+  // .then(envTexture => {
+  //   initWater(envTexture);    
+  //   valuesChanger();  
+  //   renderer.setAnimationLoop( animate );
+  // });
 }
 
 async function loadTexture(){
   return new Promise(function (resolve,reject) {
     
     const r = "https://raw.githubusercontent.com/keiyashi/codepen-example/refs/heads/main/pic-37-invert_R.jpg";
-    const urls = [];
+    const urls = [r, r, r, r, r, r];
+    // const urls = [canvas, canvas, canvas, canvas, canvas, canvas];
     
     //const r = "https://threejs.org/examples/textures/cube/Bridge2/";
     //const urls = [r + "posx.jpg", r + "negx.jpg", r + "posy.jpg", r + "negy.jpg", r + "posz.jpg", r + "negz.jpg"];
@@ -128,7 +138,7 @@ async function loadTexture(){
 
 function initWater(envTexture) {
 
-  const materialColor = 0x000000;
+  const materialColor = 0x333333;
   const geometry = new THREE.PlaneGeometry( BOUNDS, BOUNDS, WIDTH - 1, WIDTH - 1 );
 
   // material: make a THREE.ShaderMaterial clone of THREE.MeshPhongMaterial, with customized vertex shader
@@ -142,7 +152,6 @@ function initWater(envTexture) {
     vertexShader: waterVertexShader,
     fragmentShader: THREE.ShaderChunk[ 'meshphong_frag' ],
   } );
-
   material.lights = true;
   material.envMap = envTexture;
   material.combine = THREE.AddOperation;
