@@ -20,7 +20,14 @@ export default class Controls{
         this.gui.add(this.params, "iterations_poisson", 1, 32);
         this.gui.add(this.params, "dt", 1/200, 1/30);
         this.gui.add(this.params, 'BFECC');
-        // this.gui.close();
+        
+        // 色の設定
+        const colorFolder = this.gui.addFolder('Colors');
+        colorFolder.addColor(this.params, 'baseColor').name('Background Color');
+        colorFolder.addColor(this.params, 'smokeColor').name('Smoke Color');
+        colorFolder.add(this.params, 'intensity', 0, 2).name('Intensity');
+        
+        this.gui.close();
     }
 
 }

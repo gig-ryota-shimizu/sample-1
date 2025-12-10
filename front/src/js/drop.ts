@@ -53,7 +53,16 @@ export function init() {
   camera.lookAt( 0, 0, 0 );
 
   scene = new THREE.Scene();
-  scene.background = new THREE.Color( 0xF5F2ED ); // 白
+  const backgroundColor = { color: 0xF5F2ED };
+  scene.background = new THREE.Color( backgroundColor.color );
+  
+  // GUI for background color
+  const backgroundFolder = gui.addFolder('Background');
+  backgroundFolder.addColor(backgroundColor, 'color').onChange((value) => {
+    scene.background.setHex(value);
+  }).name('Color');
+  backgroundFolder.close();
+
 
   const sun = new THREE.DirectionalLight( 0xf4e7d2, 20.0 );
   const sun2 = new THREE.DirectionalLight( 0xf4e7d2, 10.0 );
@@ -63,6 +72,8 @@ export function init() {
   const sunLightFolder = gui.addFolder('Sun Light');
   sunLightFolder.addColor({ color: 0xe4d6be }, 'color').onChange((value) => {
     sun.color.setHex(value);
+    sun2.color.setHex(value);
+    sun3.color.setHex(value);
   }).name('Color');
   sunLightFolder.add(sun, 'intensity', 0, 100, 1).name('Intensity');
   sunLightFolder.close();

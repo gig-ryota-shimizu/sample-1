@@ -41,7 +41,10 @@ export default class Simulation{
             isBounce: false,
             dt: 0.014,
             isViscous: false,
-            BFECC: true
+            BFECC: true,
+            baseColor: '#F5F2ED',
+            smokeColor: '#CCC0B3',
+            intensity: 0.8
         };
 
         const controls = new Controls(this.options);
