@@ -12,6 +12,7 @@ import Pressure from "./Pressure";
 
 export default class Simulation{
     constructor(props){
+        
         this.props = props;
 
         this.fbos = {
@@ -54,6 +55,8 @@ export default class Simulation{
 
     
     init(){
+        console.log('Simulation');
+
         this.calcSize();
         this.createAllFBO();
         this.createShaderPass();

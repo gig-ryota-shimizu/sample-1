@@ -39,13 +39,14 @@ let dropSize;
 const dropCoords = new THREE.Vector2();
 let dropped = false;
 
-const gui = new GUI();
 
 export function init() {
     dropSize = 1;
 
   container = document.querySelector(".drop");
   if(!container) return;
+
+  const gui = new GUI();
 
   camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 3000 );
   camera.position.set( 0, 200, 0 );

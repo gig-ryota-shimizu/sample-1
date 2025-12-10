@@ -12,6 +12,8 @@ export default class Output{
     }
 
     init(){
+        console.log('Output');
+        
         this.simulation = new Simulation();
 
         this.scene = new THREE.Scene();
