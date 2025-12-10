@@ -42,9 +42,7 @@ let dropped = false;
 const gui = new GUI();
 
 export function init() {
-  console.log('drop init!!!');
-  
-  dropSize = 1;
+    dropSize = 1;
 
   container = document.querySelector(".drop");
   if(!container) return;
@@ -54,25 +52,36 @@ export function init() {
   camera.lookAt( 0, 0, 0 );
 
   scene = new THREE.Scene();
-  scene.background = new THREE.Color( 0xffffff ); // 白
+  scene.background = new THREE.Color( 0xF5F2ED ); // 白
 
-  const sun = new THREE.DirectionalLight( 0xFFFFFF, 50.0 );
-  sun.position.set( 0, 200, 0 );
-  sun.target.position.set(100,100,0);
+  const sun = new THREE.DirectionalLight( 0xf4e7d2, 20.0 );
+  const sun2 = new THREE.DirectionalLight( 0xf4e7d2, 10.0 );
+  const sun3 = new THREE.DirectionalLight( 0xf4e7d2, 20.0 );
+  
+  // GUI for sun light
+  const sunLightFolder = gui.addFolder('Sun Light');
+  sunLightFolder.addColor({ color: 0xe4d6be }, 'color').onChange((value) => {
+    sun.color.setHex(value);
+  }).name('Color');
+  sunLightFolder.add(sun, 'intensity', 0, 100, 1).name('Intensity');
+  sunLightFolder.close();
+  sun.position.set( 0, 500, 0 );
+  sun2.position.set( -350, 500, -130 );
+  sun3.position.set( 350, 500, 130 );
+  
+  // GUI for sun position
+  const sunFolder = gui.addFolder('Sun Position');
+  sunFolder.add(sun.position, 'x', -1000, 1000, 10).name('X');
+  sunFolder.add(sun.position, 'y', -1000, 1000, 10).name('Y');
+  sunFolder.add(sun.position, 'z', -1000, 1000, 10).name('Z');
+  sunFolder.close();
+  
+  sun.target.position.set(0, 0, 0);
+  sun2.target.position.set(0, 0, 0);
+  sun3.target.position.set(0, 0, 0);
   scene.add( sun );
-
-  const hemisphereLight = new THREE.HemisphereLight(0xffffbb, 0x080820, 1);
-  hemisphereLight.position.set( 0, 200, 0 );
-  // hemisphereLight.target.position.set(100,100,0);
-  // scene.add(hemisphereLight);
-
-  const spotLight = new THREE.SpotLight(0xffffff, 1);
-  spotLight.position.set(0, 10, 0);
-  spotLight.angle = Math.PI / 6;
-  scene.add(spotLight);
-
-  const ambientLight = new THREE.AmbientLight( 0xFFFFFF, 0.9 );
-  scene.add( ambientLight );
+  scene.add( sun2 );
+  scene.add( sun3 );
 
   renderer = new THREE.WebGLRenderer();
   renderer.setPixelRatio( window.devicePixelRatio );
@@ -126,7 +135,8 @@ export function init() {
 async function loadTexture(){
   return new Promise(function (resolve,reject) {
     
-    const r = "https://raw.githubusercontent.com/keiyashi/codepen-example/refs/heads/main/pic-37-invert_R.jpg";
+    // const r = "https://raw.githubusercontent.com/keiyashi/codepen-example/refs/heads/main/pic-37-invert_R.jpg";
+    const r = "/img/base.png"
     const urls = [r, r, r, r, r, r];
     // const urls = [canvas, canvas, canvas, canvas, canvas, canvas];
     
@@ -144,7 +154,7 @@ async function loadTexture(){
 
 function initWater(envTexture) {
 
-  const materialColor = 0x333333;
+  const materialColor = 0x444444;
   const geometry = new THREE.PlaneGeometry( BOUNDS, BOUNDS, WIDTH - 1, WIDTH - 1 );
 
   // material: make a THREE.ShaderMaterial clone of THREE.MeshPhongMaterial, with customized vertex shader
